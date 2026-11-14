@@ -1,10 +1,11 @@
 #include<stdio.h>
 #include<stdbool.h>
 #include<raylib.h>
+#include<time.h>
 typedef struct {
-    Rectangle rect; //holds enemies position
+    Rectangle rect; //holds enemies position and size
     float speedX;// horizontal movement of enemy (-ve left +ve right)
-    float speedY;//vertical movement of enemy (-ve down +ve up)
+    float speedY;//vertical movement of enemy (-ve up +ve down)
     bool active;//true when enemy is on the screen false when enemy is destroyed or 
                 //left the screen
 } Enemy;
@@ -14,9 +15,10 @@ typedef struct {
 Enemy asteroids[MAX_ASTEROIDS];
 Enemy aliens[MAX_ALIENS];
 
-void init_enemies() //at every start of the game setting active status false
+void initEnemies() //at every start of the game setting active status false
                        // so that they donot exit basically initializing their status
  {
+    SetRandomSeed((unsigned int)time(NULL)); //different random values for every game to avoid predictability
     for (int i=0;i<MAX_ASTEROIDS;i++)
     {
         asteroids[i].active = false;
