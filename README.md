@@ -1,6 +1,7 @@
 # Space Invaders
 
 ## 1. Project Overview 
+
 Space Invaders is a real-time 2D arcade shooter built from scratch in C using the Raylib graphics library.
 
 Developed by:
@@ -14,9 +15,9 @@ The player pilots a spaceship along the lower part of the screen, moving with W/
 ## 2. Features
 * Player movement: The ship moves in four directions with W/A/S/D or the arrow keys. It is kept inside the screen bounds, in the lower part of the viewport.
 
-* Shooting bullets: The spacebar fires lasers. Lasers sit in an array with an active flag, move each frame, and deactivate off-screen. A fire-rate limit stops spamming. The spec also describes a multi-laser spread mode.
+* Shooting bullets: The spacebar fires lasers. Lasers sit in an array with an active flag, move each frame, and deactivate off-screen. A fire-rate limit stops spamming. 
 
-* Enemy movement: Asteroids and aliens spawn at random positions, speeds, and directions. They move every frame and deactivate when they leave the screen. The spec adds kamikaze attackers that dive toward the ship.
+* Enemy movement: Asteroids and aliens spawn at random positions, speeds, and directions. They move every frame and deactivate when they leave the screen. 
 
 * Collision detection: Rectangles are compared with CheckCollisionRecs using nested loops. Lasers are checked against enemies, and enemies against the player.
 
@@ -57,7 +58,8 @@ gcc --version
 ### 3. Cloning the Repository
 Clone the Repository by using the following the command 
 ```bash
-git https://github.com/fatimarumaisa123/pf_project/tree/main
+git clone https://github.com/fatimarumaisa123/pf_project/tree/main
+cd pf_project
 ```
 
 ### 4. Compiling the Project
@@ -74,3 +76,42 @@ After the code has beeen compiled, it can be executed using the following comman
 ./SpaceInvaders.exe
 ```
 
+## 5. Project Strucutre 
+
+
+```text
+Space-Invaders/
+
+│
+├── main.c
+├── player.c
+├── enemy.c
+└── README.md
+```
+
+## 6. How to Play
+- **W / Up Arrow:** Move up.
+- **A / Left Arrow:** Move left.
+- **S / Down Arrow:** Move down.
+- **D / Right Arrow:** Move right.
+- **Spacebar:** Shoot.
+- **Esc:** Exit the game
+
+Avoid enemy attacks and destroy enemies to earn points.
+
+## 7. Member Contributions
+
+
+| Team Member | Contributions |
+|---|---|
+| Afnan Ahmed| [ contributions] |
+| Rumaisa Fatima | [ contributions] |
+| Uzair Nauman | [ contributions] |
+
+
+## 8. Acknowledgements
+
+
+- [Raylib](https://www.raylib.com/) for providing the graphics and game development library.
+- [GCC](https://gcc.gnu.org/) for compiling the C code.
+- [GitHub](https://github.com/) for version control and team collaboration.
