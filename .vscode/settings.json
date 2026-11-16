@@ -1,3 +1,7 @@
 {
-    "C_Cpp.hoverShowTypeSizeAndAlignment": true
+    "C_Cpp.hoverShowTypeSizeAndAlignment": false,
+    "code-runner.executorMap": {
+    "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt -I C:/raylib/raylib/src -L C:/raylib/raylib/src -lraylib -lopengl32 -lgdi32 -lwinmm && $dir$fileNameWithoutExt"
+}
+    
 }
