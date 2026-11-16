@@ -64,6 +64,64 @@ void checkLaserEnemyCollisions(int *score, Laser lasers[], Enemy enemies[]) {
         }
     }
 }
+/**
+ * Checks collisions between active enemies and the player.
+ * Reduces player health if hit, deactivates the enemy, and transitions to Game Over if health reaches 0.
+ */
+void checkPlayerCollisions(int *health, Player *player, Enemy enemies[], GameState *currentState) {
+    for (int i = 0; i < MAX_ENEMIES; i++) {
+        if (!enemies[i].active) continue;
 
+        // Check if enemy rectangle intersects with player rectangle
+        if (CheckCollisionRecs(player->rect, enemies[i].rect)) {
+            enemies[i].active = false; // Deactivate enemy on impact
+            (*health) -= 20;           // Reduce health by 20 (adjust damage as needed)
+
+            if (*health <= 0) {
+                *health = 0;
+                *currentState = STATE_GAMEOVER;
+            }
+        }
+    }
+}
+
+/**
+ * Updates the 2-minute (120 seconds) countdown timer.
+ * Ends the game when timeLeft reaches zero.
+ */
+void updateTimer(float *timeLeft, GameState *currentState) {
+    if (*timeLeft > 0) {
+        *timeLeft -= GetFrameTime(); // Subtract time elapsed since last frame
+        if (*timeLeft <= 0) {
+            *timeLeft = 0;
+            *currentState = STATE_GAMEOVER;
+        }
+    }
+}
+
+/**
+ * Draws the health bar on the screen based on current health points.
+ */
+void drawHealthBar(int health) {
+    int barWidth = 200;
+    int barHeight = 20;
+    int posX = SCREEN_WIDTH - 220;
+    int posY = 20;
+
+    // Background bar (empty container)
+    DrawRectangle(posX, posY, barWidth, barHeight, DARKGRAY);
+    
+    // Health fill bar (color changes based on health level)
+    Color healthColor = GREEN;
+    if (health < 50) healthColor = YELLOW;
+    if (health < 25) healthColor = RED;
+
+    float currentWidth = (float)barWidth * ((float)health / 100.0f);
+    DrawRectangle(posX, posY, (int)currentWidth, barHeight, healthColor);
+    
+    // Border outline
+    DrawRectangleLines(posX, posY, barWidth, barHeight, WHITE);
+    DrawText("HEALTH", posX, posY - 18, 10, WHITE);
+}
 
 
