@@ -123,5 +123,36 @@ void drawHealthBar(int health) {
     DrawRectangleLines(posX, posY, barWidth, barHeight, WHITE);
     DrawText("HEALTH", posX, posY - 18, 10, WHITE);
 }
+/**
+ * Draws the complete Heads-Up Display (Score, Timer, and Health).
+ */
+void drawHUD(int score, float timeLeft, int health) {
+    // Draw Score
+    DrawText(TextFormat("SCORE: %05d", score), 20, 20, 20, WHITE);
 
+    // Format and Draw Countdown Timer (Minutes:Seconds)
+    int minutes = (int)(timeLeft) / 60;
+    int seconds = (int)(timeLeft) % 60;
+    DrawText(TextFormat("TIME: %02d:%02d", minutes, seconds), SCREEN_WIDTH / 2 - 50, 20, 20, WHITE);
+
+    // Draw Health Bar
+    drawHealthBar(health);
+}
+
+/**
+ * Draws the Game Over screen with final score and restart/quit options.
+ */
+void drawGameOver(int score) {
+    // Semi-transparent dark overlay
+    DrawRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, Fade(BLACK, 0.8f));
+
+    // Game Over Text
+    DrawText("GAME OVER", SCREEN_WIDTH / 2 - MeasureText("GAME OVER", 40) / 2, SCREEN_HEIGHT / 3, 40, RED);
+    
+    // Final Score Display
+    DrawText(TextFormat("Final Score: %d", score), SCREEN_WIDTH / 2 - MeasureText(TextFormat("Final Score: %d", score), 20) / 2, SCREEN_HEIGHT / 3 + 60, 20, WHITE);
+
+    // Instructions for restart/quit
+    DrawText("Press [R] to Restart or [Q] to Quit", SCREEN_WIDTH / 2 - MeasureText("Press [R] to Restart or [Q] to Quit", 18) / 2, SCREEN_HEIGHT / 2 + 40, 18, LIGHTGRAY);
+}
 
