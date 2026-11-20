@@ -39,3 +39,34 @@ void handlePlayerInput(Player *p) {
     if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) (*p).rect.x += (*p).speed * dt;
 
 }
+
+
+
+// funciton used to prevent spaceship from moving outside the screen 
+void updatePlayer(Player *p) {
+
+    // restrictions on left and right
+    if ((*p).rect.x < 0) (*p).rect.x = 0;
+
+    if ((*p).rect.x > GetScreenWidth() - (*p).rect.width)  
+        (*p).rect.x = GetScreenWidth() - (*p).rect.width;
+
+    // restrictions on up and down
+    
+    // prevents the space ship from moving down the screen
+    if ((*p).rect.y > GetScreenHeight() - (*p).rect.height) 
+        (*p).rect.y = GetScreenHeight() - (*p).rect.height;
+
+    // this prevents the spaceship from moving 70% above the screen
+    if ((*p).rect.y < GetScreenHeight() * 0.7f) (*p).rect.y = GetScreenHeight() * 0.7f;
+
+
+}
+
+
+// displays the spaceship on the screen
+void drawPlayer(Player *p) {
+    
+    // change the color -- replace BLUE with RED
+    DrawRectangleRec((*p).rect, BLUE);
+}
