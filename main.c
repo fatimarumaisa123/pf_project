@@ -62,8 +62,10 @@ int main(void) {
 
     while (quitRequested == false) {
 
+        if (IsKeyPressed(KEY_Q)) quitRequested = true;
+
+        handlePause(); //declared above
         if (state == STATE_PLAYING) {
-            handlePause(); //declared above
             
             // stores times in seconds of previous frame
             float dt = GetFrameTime(); // raylib function
@@ -92,11 +94,42 @@ int main(void) {
                 if (result == 0) spawnAlien(); // declared in game.h
                 else spawnAsteroid(); // declared in game.h
 
-
-
             }        
 
+            // functions imported from game.h
+
+            // checks if a laser hits  an asteriod or an asteriod hits the spaceship
+            checkLaserEnemyCollisions(&score, lasers, asteroids, m_asteroids, 100);
+            checkPlayerCollisions(&player.health, &player, asteroids, m_asteroids, &state);
+
+            // checks if a laser hits an alien or an alien hits the spaceship
+            checkLaserEnemyCollisions(&score, lasers, aliens, m_aliens, 150);
+            checkPlayerCollisions(&player.health, &player, aliens, m_aliens, &state);
+
+            updateTimer(&timeLeft, &state);
         }
 
+        BeginDrawing();
+        ClearBackground(BLACK);
+
+        // imported from game.h
+        drawPlayer(&player);  drawLasers(lasers); drawEnemies();
+        drawHUD(score, timeLeft, player.health);
+
+
+        // when game is paused
+        if (state == STATE_PAUSED) DrawText("Game Paused", 300, 300, 30, YELLOW);
+
+        // when game is over
+        if (state == STATE_GAMEOVER) drawGameOver(score);
+
+        EndDrawing();
+
     }
+
+    unloadAudio(); CloseWindow();
+
+    return 0;
 }
+
+
