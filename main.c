@@ -37,10 +37,10 @@ void handlePause(void) {
         if (state == STATE_PLAYING) state = STATE_PAUSED;
 
         else if (state == STATE_PAUSED) state = STATE_PLAYING;
-
-        
-
     }
+
+    // restarts game when paused or game over
+    if ((state == STATE_GAMEOVER || state == STATE_PAUSED) && IsKeyPressed(KEY_R)) initGame();
 }
 
 
