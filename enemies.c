@@ -107,24 +107,24 @@ void drawEnemies(void)//simple recatngle shaped enemies
     }
     
 }
-void initAudio(void)
+void initAudio(void)//sets up the audio system and loads the sound effects into memory
 {
-    InitAudioDevice();// start the audio system first
-    laser = LoadSound("audio/laser.wav");
-    hit = LoadSound("audio/hit.wav");
+    InitAudioDevice();//opening the audio device
+    laser = LoadSound("audio/laser.wav");//loading laser sound in the memory
+    hit = LoadSound("audio/hit.wav");//loading hit sound in the memory
 }
 void playShootSound(void)
 {
-    PlaySound(laser);
+    PlaySound(laser);//when laser is striked
 }
 
 void playExplosionSound(void)
 {
-    PlaySound(hit);
+    PlaySound(hit);//when collison happens or anyhtnind destroys
 }
 void unloadAudio(void)
 {
-    UnloadSound(laser);
+    UnloadSound(laser);//unloading from memory
     UnloadSound(hit);
-    CloseAudioDevice();
+    CloseAudioDevice();//closing the audio device
 }
