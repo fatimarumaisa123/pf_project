@@ -14,7 +14,7 @@ Developed by:
 The player pilots a spaceship along the lower part of the screen, moving with W/A/S/D or arrow keys and firing lasers with the spacebar. They shoot asteroids and alien invaders while keeping the health bar above zero and scoring as many points as possible within a 2-minute countdown.
 
 ## 2. Features
-<img src="https://github.com/user-attachments/assets/59809553-7d80-4ef2-b68d-86da45000714" width="600" height="400" alt="Screenshot">
+![Screenshot](https://github.com/user-attachments/assets/59809553-7d80-4ef2-b68d-86da45000714)
 * Player movement: The ship moves in four directions with W/A/S/D or the arrow keys. It is kept inside the screen bounds, in the middle part of the viewport.
 
 * Shooting bullets: The spacebar fires lasers. Lasers sit in an array with an active flag, move each frame, and deactivate off-screen. A fire-rate limit stops spamming. 
