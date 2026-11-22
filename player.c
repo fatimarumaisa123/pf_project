@@ -58,7 +58,7 @@ void updatePlayer(Player *p) {
         (*p).rect.y = GetScreenHeight() - (*p).rect.height;
 
     // this prevents the spaceship from moving 70% above the screen
-    if ((*p).rect.y < GetScreenHeight() * 0.7f) (*p).rect.y = GetScreenHeight() * 0.7f;
+    if ((*p).rect.y < GetScreenHeight() * 0.4f) (*p).rect.y = GetScreenHeight() * 0.4f;
 
 
 }
