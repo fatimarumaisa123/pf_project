@@ -1,24 +1,12 @@
-#include<stdio.h>
-#include<stdbool.h>
-#include<raylib.h>
+#include "game.h"
 #include<time.h>
-typedef struct {
-    Rectangle pos; //holds enemies position and size
-    //float speedX;// horizontal movement of enemy (-ve left +ve right)
-    float speedY;//vertical movement of enemy (-ve up +ve down)
-    bool active;//true when enemy is on the screen, false when enemy is destroyed or 
-                //left the screen
-} enemy;//attributes of enemy
-#define m_asteroids 8 //setting up the maximum number of aesteroids at one time on the screen
-#define m_aliens 8    // setting up the maximum number of aliens at one time on the screen
-#define screen_w 800
-#define screen_h 600
+
 enemy asteroids[m_asteroids]; //an array of struct
 enemy aliens[m_aliens];
 Sound laser;
 Sound hit;
 
-void initEnemies() //at every start of the game setting active status false
+void initEnemies(void) //at every start of the game setting active status false
                        // so that they donot exit basically initializing their status
  {
     SetRandomSeed((unsigned int)time(NULL)); //different random values for every game to avoid predictability
@@ -34,7 +22,7 @@ void initEnemies() //at every start of the game setting active status false
 }
 
 
-void spawnAsteroid() // spawning the aesteroids that are not active at random places
+void spawnAsteroid(void) // spawning the aesteroids that are not active at random places
 {
     for (int i=0;i<m_asteroids;i++)
     {
@@ -54,7 +42,7 @@ void spawnAsteroid() // spawning the aesteroids that are not active at random pl
         }
     }
 }
-void spawnAlien() // spawning the aliens that are not active at random places
+void spawnAlien(void) // spawning the aliens that are not active at random places
 {
     for (int i=0;i<m_aliens;i++)
     {
@@ -71,19 +59,19 @@ void spawnAlien() // spawning the aliens that are not active at random places
         }
     }
 }
-void updateEnemies(){
+void updateEnemies(void){
     for(int i=0;i<m_asteroids;i++){
         if(asteroids[i].active==true)
         {
            //asteroids[i].pos.x+=asteroids[i].speedX;//if speed x is 0 so it falls straight down
            // and if it has speed x so it will move the aesteroid side ways 
            asteroids[i].pos.y+=asteroids[i].speedY;//downward falling
-           if(asteroids[i].pos.y > screen_h || //assuming the window is 600 tall y is the top edge of 
+           if(asteroids[i].pos.y > SCREEN_HEIGHT || //assuming the window is 600 tall y is the top edge of 
             //aesteroid if it is below 600 it is completely below the bottom of the screen
             asteroids[i].pos.x + asteroids[i].pos.width<0 || //x is the left edge so adding
             //width to for the right edge and less than 0 says that it has completely left 
             //the screen 
-            asteroids[i].pos.x>screen_w // assuming window is 800 wide, x is the left edge and if
+            asteroids[i].pos.x>SCREEN_WIDTH // assuming window is 800 wide, x is the left edge and if
             //it is past 800 that means the asteroid is outside the screen 
         ){
             asteroids[i].active = false;
@@ -96,7 +84,7 @@ void updateEnemies(){
         {
            // aliens[i].pos.x+=aliens[i].speedX;
             aliens[i].pos.y+=aliens[i].speedY;
-            if(aliens[i].pos.y>screen_h || aliens[i].pos.x>screen_w || aliens[i].pos.x +
+            if(aliens[i].pos.y>SCREEN_HEIGHT || aliens[i].pos.x>SCREEN_WIDTH || aliens[i].pos.x +
                  aliens[i].pos.width<0){
                 aliens[i].active=false;
             }
@@ -105,7 +93,7 @@ void updateEnemies(){
 
 }
 
-void drawEnemies()//simple recatngle shaped enemies
+void drawEnemies(void)//simple recatngle shaped enemies
 {
     for (int i=0;i<m_asteroids;i++)
     {
@@ -119,30 +107,24 @@ void drawEnemies()//simple recatngle shaped enemies
     }
     
 }
-void initAudio()
+void initAudio(void)
 {
     InitAudioDevice();// start the audio system first
     laser = LoadSound("audio/laser.wav");
     hit = LoadSound("audio/hit.wav");
 }
-void playShootSound()
+void playShootSound(void)
 {
     PlaySound(laser);
 }
 
-void playExplosionSound()
+void playExplosionSound(void)
 {
     PlaySound(hit);
 }
-void unloadAudio()
+void unloadAudio(void)
 {
     UnloadSound(laser);
     UnloadSound(hit);
     CloseAudioDevice();
 }
-
-
-
-
-
-
