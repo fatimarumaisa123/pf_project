@@ -93,17 +93,31 @@ void updateEnemies(void){
 
 }
 
-void drawEnemies(void)//simple recatngle shaped enemies
+void drawEnemies(void)//asteroids are hexagons, aliens are triangles 
 {
     for (int i=0;i<m_asteroids;i++)
     {
         if(asteroids[i].active)
-        DrawRectangleRec(asteroids[i].pos,YELLOW);
+        {
+            // center of the asteroids 40x40 box
+            Vector2 center = { asteroids[i].pos.x + 20, asteroids[i].pos.y + 20 };//a point
+            //on the screen asteroids[i].pos.x and asteroids[i].pos.y are top left corners
+            //the box is 40 by 40 so half of each side is 20 by adding 20 to x 
+            //and y moves from the corner to the middle of the box
+            DrawPoly(center, 6, 20, 0, YELLOW);  // filled hexagon
+          
+        }
     }
     for(int i=0;i<m_aliens;i++)
     {
         if(aliens[i].active)
-        DrawRectangleRec(aliens[i].pos,RED);
+        {
+            // center of the alien's 50x40 box
+            Vector2 center = { aliens[i].pos.x + 25, aliens[i].pos.y + 20 };
+
+            DrawPoly(center, 3, 22, 90, RED); // filled triangle rotated 90 to point down
+           
+        }
     }
     
 }
