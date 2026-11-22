@@ -133,3 +133,4 @@ void drawGameOver(int score) {
 
     // Instructions for restart/quit
     DrawText("Press [R] to Restart or [Q] to Quit", SCREEN_WIDTH / 2 - MeasureText("Press [R] to Restart or [Q] to Quit", 18) / 2, SCREEN_HEIGHT / 2 + 40, 18, LIGHTGRAY);
+}
