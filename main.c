@@ -3,7 +3,7 @@
 
 // global variables with user defined datatypes
 Player player;
-int score;
+int score; int highScore;
 float timeLeft, fireTimer, spawnTimer;
 Laser lasers[MAX_LASERS] ; // constant  array upto 10 defined in game.h
 GameState state;
@@ -19,6 +19,7 @@ void initGame(void) {
     player.health = MAX_HEALTH; // defined in game.h
 
     score = 0;
+    highScore = loadHighScore(); // file function
     timeLeft = GAME_TIME; // defined in game.h
 
     fireTimer = 0;
@@ -121,7 +122,15 @@ int main(void) {
         if (state == STATE_PAUSED) DrawText("Game Paused", 300, 300, 30, YELLOW);
 
         // when game is over
-        if (state == STATE_GAMEOVER) drawGameOver(score);
+        if (state == STATE_GAMEOVER) {
+            if (score > highScore) {
+                highScore = score;
+                saveHighScore(highScore);
+            }
+
+            drawGameOver(score);
+
+        }
 
         EndDrawing();
 
