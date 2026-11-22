@@ -90,6 +90,10 @@ void drawHUD(int score, float timeLeft, int health);
 void drawHealthBar(int health);
 void drawGameOver(int score);
 
+// file function declarations
+int loadHighScore(void);
+void saveHighScore(int score);
+
 
 #endif
 
