@@ -10,16 +10,17 @@ Developed by:
 * Uzair Nauman 26K-0016
 
 
+
 The player pilots a spaceship along the lower part of the screen, moving with W/A/S/D or arrow keys and firing lasers with the spacebar. They shoot asteroids and alien invaders while keeping the health bar above zero and scoring as many points as possible within a 2-minute countdown.
 
 ## 2. Features
-* Player movement: The ship moves in four directions with W/A/S/D or the arrow keys. It is kept inside the screen bounds, in the lower part of the viewport.
+* Player movement: The ship moves in four directions with W/A/S/D or the arrow keys. It is kept inside the screen bounds, in the middle part of the viewport.
 
 * Shooting bullets: The spacebar fires lasers. Lasers sit in an array with an active flag, move each frame, and deactivate off-screen. A fire-rate limit stops spamming. 
 
 * Enemy movement: Asteroids and aliens spawn at random positions, speeds, and directions. They move every frame and deactivate when they leave the screen. 
 
-* Collision detection: Rectangles are compared with CheckCollisionRecs using nested loops. Lasers are checked against enemies, and enemies against the player.
+* Collision detection: Shapes are compared with CheckCollisionRecs using nested loops. Lasers are checked against enemies, and enemies against the player.
 
 * Scoring system: Points are added for each destroyed enemy, shown live on the HUD. The high score is saved to and loaded from a file.
 
@@ -66,7 +67,7 @@ cd pf_project
 The code can be combined once GCC has been installed. The code can be compiled using the following command
 
 ```bash
-gcc *.c -o SpaceInvaders -lraylib -lopengl32 -lgdi32 -lwinmm
+gcc *.c -o SpaceInvaders -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 ```
 
 ### 5. Executing the Game
@@ -81,11 +82,21 @@ After the code has beeen compiled, it can be executed using the following comman
 
 ```text
 Space-Invaders/
-
 │
+├── game.h
 ├── main.c
-├── player.c
-├── enemy.c
+├── players.c
+├── enemies.c
+├── lasers.c
+├── collisions.c
+├── file_integration.c
+│
+├── highscore.txt
+│
+├── audio/
+│   ├── hit.wav
+│   └── laser.wav
+│
 └── README.md
 ```
 
@@ -95,18 +106,20 @@ Space-Invaders/
 - **S / Down Arrow:** Move down.
 - **D / Right Arrow:** Move right.
 - **Spacebar:** Shoot.
-- **Esc:** Exit the game
+- **Q** Quit The game
+- **R** Restart the Game
+- **Esc:** Pause the game
 
-Avoid enemy attacks and destroy enemies to earn points.
+Avoid enemy attacks and destroy aliens and asteriods to earn points.
 
 ## 7. Member Contributions
 
 
 | Team Member | Contributions |
 |---|---|
-| Afnan Ahmed| [ contributions] |
-| Rumaisa Fatima | [ contributions] |
-| Uzair Nauman | [ contributions] |
+| Afnan Ahmed| README.md, game.h, main.c, player.c |
+| Rumaisa Fatima | file_integration.c, eninimies.c |
+| Uzair Nauman | collisions.c, lasers.c |
 
 
 ## 8. Acknowledgements
