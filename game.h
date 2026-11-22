@@ -15,8 +15,8 @@ which will be used across multiple c files
 
 
 // all the constants are defined below 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
+#define SCREEN_WIDTH 1360
+#define SCREEN_HEIGHT 1020
 #define MAX_LASERS 10
 #define m_asteroids 8
 #define m_aliens 8
