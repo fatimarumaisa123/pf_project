@@ -28,10 +28,10 @@ void spawnAsteroid(void) // spawning the aesteroids that are not active at rando
     {
         if (asteroids[i].active==false)
         {
-            asteroids[i].pos.x = GetRandomValue(0, 760);//Random Aesteroid staring point from 
+            asteroids[i].pos.x = GetRandomValue(0, SCREEN_WIDTH-40);//Random Aesteroid staring point from 
             //  across the top.
-            // The maximum is 760 because the screen is 800 wide and the asteroid is
-            // 40 wide (800 − 40). A larger x would start it partly off the right side
+            // The maximum is 1320 because the screen is 1360 wide and the asteroid is
+            // 40 wide (1360-40). A larger x would start it partly off the right side
             asteroids[i].pos.y = -40;//aesteroids starts falling from hidden top
             asteroids[i].pos.width = 40;//sets the width of rectangle 
             asteroids[i].pos.height = 40;//sets the height of rectangle
@@ -48,7 +48,7 @@ void spawnAlien(void) // spawning the aliens that are not active at random place
     {
         if (aliens[i].active==false)
         {
-            aliens[i].pos.x = GetRandomValue(0, 750);//Random alien strating point from accross the top
+            aliens[i].pos.x = GetRandomValue(0, SCREEN_WIDTH-50);//Random alien strating point from accross the top
             aliens[i].pos.y =-40;//aliens start falling from hidden top                  
             aliens[i].pos.width = 50;//the width of alien rectangle
             aliens[i].pos.height = 40;// the height of alien rectangle
