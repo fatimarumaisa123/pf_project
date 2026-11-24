@@ -64,12 +64,21 @@ git clone https://github.com/fatimarumaisa123/pf_project/tree/main
 cd pf_project
 ```
 
-### 4. Compiling the Project
+### 4.1 Compiling the Project for Linux
 The code can be combined once GCC has been installed. The code can be compiled using the following command
 
 ```bash
 gcc *.c -o SpaceInvaders -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 ```
+
+### 4.2 Compiling the Project for Windows
+The code can be combined once GCC has been installed. The code can be compiled using the following command
+```bash
+set "PATH=C:\raylib\w64devkit\bin;%PATH%"
+C:\raylib\w64devkit\bin\gcc.exe *.c -o SpaceInvaders.exe -IC:\raylib\raylib\src -LC:\raylib\w64devkit\lib -lraylib -lopengl32 -lgdi32 -lwinmm
+```
+
+
 
 ### 5. Executing the Game
 After the code has beeen compiled, it can be executed using the following command
