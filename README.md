@@ -84,7 +84,7 @@ C:\raylib\w64devkit\bin\gcc.exe *.c -o SpaceInvaders.exe -IC:\raylib\raylib\src 
 After the code has beeen compiled, it can be executed using the following command
 
 ```bash
-./SpaceInvaders.exe
+SpaceInvaders.exe
 ```
 
 ## 5. Project Strucutre 
