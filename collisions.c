@@ -15,7 +15,7 @@ void checkLaserEnemyCollisions(int *score, Laser lasers[], enemy enemies[], int 
             if (!enemies[j].active) continue;
             
             // deactivates laser and enemy after they collide 
-            if (CheckCollisionRecs(lasers[i].rect, enemies[j].pos)) {
+            if (CheckCollisionRecs(lasers[i].rect, enemies[j].pos)) //Raylib Func {
                 lasers[i].active = false; 
                 enemies[j].active = false; 
                 
